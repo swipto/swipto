@@ -23,7 +23,6 @@ dependencies {
     implementation(project(":swipto-android"))
     implementation(project(":swipto-ui"))
     implementation(project(":swipto-components"))
-    implementation(project(":swipto-style"))
     implementation(project(":swipto-navigation"))
     implementation(project(":swipto-data"))
     implementation(libs.androidx.activity.compose)

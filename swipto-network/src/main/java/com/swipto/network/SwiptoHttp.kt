@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.CancellationException
 
 /** Network defaults that can be used without exposing client implementation details to screens. */
 data class HttpConfig(
@@ -33,8 +34,14 @@ object SwiptoHttp {
         .build()
 }
 
+/**
+ * Maps request failures to [Outcome] without converting structured coroutine cancellation into
+ * an application error. Cancellation must propagate promptly when a screen leaves the foreground.
+ */
 suspend fun <T> networkCall(block: suspend () -> T): Outcome<T> = try {
     Outcome.Success(block())
+} catch (cancellation: CancellationException) {
+    throw cancellation
 } catch (error: Throwable) {
     Outcome.Failure(error)
 }

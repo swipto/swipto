@@ -115,3 +115,5 @@ bash ./gradlew :sample-app:assembleDebug
 ```
 
 The project uses Kotlin 2.0.21, AGP 8.7.3, Gradle 8.9, and min SDK 26. Versions are centralized in `gradle/libs.versions.toml`.
+
+See [the performance guide](docs/performance.md) for separate runtime/build risks, dependency boundaries, reproducible benchmarks, and CI regression policy.
