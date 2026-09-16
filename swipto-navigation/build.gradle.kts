@@ -8,6 +8,6 @@ android {
 }
 
 dependencies {
-    api(project(":swipto-ui"))
+    api(project(":swipto-runtime"))
     api(libs.androidx.navigation.compose)
 }

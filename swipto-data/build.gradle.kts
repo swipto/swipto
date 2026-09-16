@@ -9,8 +9,4 @@ android {
 dependencies {
     api(project(":swipto-core"))
     api(libs.kotlinx.coroutines.core)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.gson)
 }

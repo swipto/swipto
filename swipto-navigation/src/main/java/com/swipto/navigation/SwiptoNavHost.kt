@@ -8,6 +8,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
+/** Navigation operations available to screens without passing a NavController. */
+interface SwiptoNavigator {
+    fun navigate(route: SwiptoRoute)
+    fun back(): Boolean
+}
+
+private class NavControllerNavigator(private val controller: NavHostController) : SwiptoNavigator {
+    override fun navigate(route: SwiptoRoute) = controller.navigate(route.route)
+    override fun back(): Boolean = controller.popBackStack()
+}
+
 /**
  * Registers destinations for a Swipto nav graph.
  */
@@ -53,3 +64,6 @@ fun NavGraphBuilder.swiptoComposable(
 ) {
     composable(route.route) { content() }
 }
+
+/** Creates a framework navigator from an AndroidX controller when an interop bridge is needed. */
+fun NavHostController.swiptoNavigator(): SwiptoNavigator = NavControllerNavigator(this)
