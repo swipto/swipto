@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
+    api(project(":swipto-style"))
     api(project(":swipto-runtime"))
     implementation(project(":swipto-android"))
     api(libs.androidx.lifecycle.viewmodel.ktx)

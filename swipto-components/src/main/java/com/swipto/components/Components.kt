@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.swipto.style.Style
+import com.swipto.style.layoutStyleOrNull
 import com.swipto.style.style
 
 @Composable
@@ -19,18 +20,32 @@ fun AppColumn(
     modifier: Modifier = Modifier,
     style: Style? = null,
     content: @Composable () -> Unit,
-) = Column(
+) {
+    val layout = style?.layoutStyleOrNull()
+    Column(
+        modifier = modifier.style(style),
+        verticalArrangement = Arrangement.spacedBy(layout?.spacing ?: 8.dp),
+        horizontalAlignment = (layout?.alignment as? androidx.compose.ui.Alignment.Horizontal)
+            ?: androidx.compose.ui.Alignment.Start,
+        content = content,
+    )
+}
+
+@Composable
+fun AppText(text: String, modifier: Modifier = Modifier, style: Style? = null) = Text(
+    text = text,
     modifier = modifier.style(style),
-    verticalArrangement = Arrangement.spacedBy(8.dp),
-    content = { content() },
+    style = style?.textStyleOrNull() ?: androidx.compose.ui.text.TextStyle.Default,
 )
 
 @Composable
-fun AppText(text: String, modifier: Modifier = Modifier) = Text(text = text, modifier = modifier)
-
-@Composable
-fun AppButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) =
-    Button(onClick = onClick, modifier = modifier, enabled = enabled) { Text(text) }
+fun AppButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    style: Style? = null,
+) = Button(onClick = onClick, modifier = modifier.style(style), enabled = enabled) { Text(text) }
 
 @Composable
 fun AppTextField(
