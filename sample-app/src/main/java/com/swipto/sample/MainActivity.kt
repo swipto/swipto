@@ -1,9 +1,7 @@
 package com.swipto.sample
 
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.swipto.android.SwiptoActivity
@@ -13,13 +11,14 @@ import com.swipto.sample.navigation.SampleRoutes
 import com.swipto.sample.ui.DetailScreen
 import com.swipto.sample.ui.HomeScreen
 import com.swipto.ui.SwiptoApp
+import com.swipto.ui.SwiptoScaffold
 
 class MainActivity : SwiptoActivity() {
     override fun Content() {
         setContent {
             SwiptoApp {
                 val navController = rememberNavController()
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                SwiptoScaffold { innerPadding ->
                     SwiptoNavHost(
                         start = SampleRoutes.Home,
                         navController = navController,

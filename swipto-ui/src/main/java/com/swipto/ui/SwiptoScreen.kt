@@ -35,6 +35,24 @@ fun <S> SwiptoScreen(
     SwiptoScreen(state = current, modifier = modifier, content = content)
 }
 
+/**
+ * Level 1 screen entry point: resolves a Koin-backed [SwiptoViewModel], collects its state
+ * lifecycle-aware, and supplies both values to [content].
+ *
+ * Use the [StateFlow] overload when a screen receives state from another owner, or use
+ * `collectAsStateWithLifecycle` directly for complete Compose control.
+ */
+@Composable
+inline fun <reified VM, S> SwiptoScreen(
+    modifier: Modifier = Modifier,
+    noinline content: @Composable (viewModel: VM, state: S) -> Unit,
+) where VM : SwiptoViewModel<S> {
+    val viewModel: VM = swiptoViewModel()
+    SwiptoScreen(state = viewModel.state, modifier = modifier) { state ->
+        content(viewModel, state)
+    }
+}
+
 @Composable
 fun <S> SwiptoScreen(
     state: S,

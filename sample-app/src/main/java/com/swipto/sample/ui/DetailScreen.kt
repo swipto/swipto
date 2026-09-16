@@ -12,14 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.swipto.ui.SwiptoScreen
-import com.swipto.ui.swiptoViewModel
 
 @Composable
 fun DetailScreen(
     navController: NavController,
-    vm: DetailViewModel = swiptoViewModel(),
 ) {
-    SwiptoScreen(state = vm.state) { state ->
+    SwiptoScreen<DetailViewModel, DetailState> { _, state ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
