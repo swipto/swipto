@@ -1,0 +1,19 @@
+package com.swipto.core
+
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+
+/**
+ * Injectable coroutine dispatchers for testability.
+ */
+interface SwiptoDispatchers {
+    val main: CoroutineDispatcher
+    val io: CoroutineDispatcher
+    val default: CoroutineDispatcher
+}
+
+class DefaultSwiptoDispatchers : SwiptoDispatchers {
+    override val main: CoroutineDispatcher = Dispatchers.Main
+    override val io: CoroutineDispatcher = Dispatchers.IO
+    override val default: CoroutineDispatcher = Dispatchers.Default
+}

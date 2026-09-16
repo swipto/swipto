@@ -1,0 +1,14 @@
+# Ignore Gradle build outputs and local config
+.gradle/
+build/
+**/build/
+local.properties
+*.iml
+.idea/
+.DS_Store
+captures/
+.cxx/
+*.apk
+*.ap_
+*.dex
+*.class
