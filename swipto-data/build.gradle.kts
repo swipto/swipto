@@ -9,4 +9,5 @@ android {
 dependencies {
     api(project(":swipto-core"))
     api(libs.kotlinx.coroutines.core)
+    testImplementation(libs.junit)
 }

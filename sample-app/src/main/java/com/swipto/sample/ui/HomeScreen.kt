@@ -16,14 +16,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.swipto.sample.navigation.SampleRoutes
 import com.swipto.ui.SwiptoScreen
-import com.swipto.ui.swiptoViewModel
 
 @Composable
 fun HomeScreen(
     navController: NavController,
-    vm: HomeViewModel = swiptoViewModel(),
 ) {
-    SwiptoScreen(state = vm.state) { state ->
+    SwiptoScreen<HomeViewModel, HomeState> { vm, state ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
