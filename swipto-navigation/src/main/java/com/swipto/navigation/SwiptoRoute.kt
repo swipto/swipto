@@ -8,6 +8,9 @@ interface SwiptoRoute {
     val route: String
 }
 
+/** A route with typed arguments represented by its own Kotlin type. */
+interface TypedSwiptoRoute : SwiptoRoute
+
 /**
  * Simple route with a static path string.
  */

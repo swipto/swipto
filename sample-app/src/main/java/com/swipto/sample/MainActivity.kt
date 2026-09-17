@@ -12,12 +12,12 @@ import com.swipto.navigation.SwiptoNavHost
 import com.swipto.sample.navigation.SampleRoutes
 import com.swipto.sample.ui.DetailScreen
 import com.swipto.sample.ui.HomeScreen
-import com.swipto.ui.theme.SwiptoTheme
+import com.swipto.ui.SwiptoApp
 
 class MainActivity : SwiptoActivity() {
     override fun Content() {
         setContent {
-            SwiptoTheme {
+            SwiptoApp {
                 val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     SwiptoNavHost(
